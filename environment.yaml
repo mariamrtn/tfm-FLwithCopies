@@ -1,16 +1,21 @@
-name: flwr-env
+name: flower-env
+
 channels:
-  - defaults
   - conda-forge
+  - defaults
+
 dependencies:
   - python=3.10
   - pip
+
   - pip:
-    - flwr==1.26.1
-    - torch==2.8.0
-    - torchvision
-    - pandas
-    - numpy
-    - matplotlib
-    - flwr-datasets
-    - datasets
+      - flwr==1.26.1
+      - "flwr[simulation]"
+      - torch==2.8.0
+      - torchvision
+      - pandas
+      - numpy
+      - matplotlib
+      - flwr-datasets
+      - datasets
+      - scikit-learn
