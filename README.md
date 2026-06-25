@@ -14,7 +14,7 @@ cd tfm-FLwithCopies
 2. Recreate the environment:
 ```bash
 conda env create -f environment.yml
-conda activate flower-env
+conda activate flwr-env
 ```
 
 3. Choose an experiment:
