@@ -14,7 +14,7 @@ from flwr.app import (
     RecordDict
 )
 from flwr.clientapp import ClientApp
-from pytorchexample_changesXIII.task import (
+from pytorchexample_expA.task import (
     BinaryClassifier, 
     SmallNN, 
     DecisionTree, 
@@ -23,7 +23,8 @@ from pytorchexample_changesXIII.task import (
     get_client_model_path, 
     save_client_model, 
     load_client_model
-)
+)   
+
 
 # Client side
 app = ClientApp()
@@ -35,16 +36,17 @@ csv_path = os.path.join(os.path.dirname(__file__), "data_clients.csv")
 batch_size = 32
 batches_per_round = 30
 
-# Load full dataset once
+# Load full dataset once, get data and labels
 df = pd.read_csv(csv_path)
-x_all = torch.tensor(df.iloc[:, :-1].values, dtype=torch.float32)
-y_all = torch.tensor(df['label'].values, dtype=torch.float32)
+x_all = torch.tensor(df.iloc[:, :2].values, dtype=torch.float32)
+x_1 = df.iloc[:, 1].values
+x_0 =  df.iloc[:, 0].values
+y_all = torch.tensor((x_1 > x_0).astype(np.float32))
 
 # Number of clients in each round, size of the partition
 num_clients = 10
 partition_size = len(x_all) // num_clients
 
-# This section will be called after the configure_train function of the strategy runs and creates the training messages.
 @app.train()
 def train(msg: Message, context: Context):
     '''This section will be called after the configure_train function of 
@@ -56,15 +58,19 @@ def train(msg: Message, context: Context):
     server_round = int(msg.metadata.group_id)
     model, optimizer = load_client_model(node_id)
 
-     # Print if model is new or not. Just for clarification.
+    # Print if model is new or not. Just for clarification.
     if server_round == 1:
-        print(f"[Node {node_id}] Round 1 — model created ({type(model).__name__})")
+        print(
+            f"[Node {node_id}] Round 1 — model created ({type(model).__name__})"
+            )
     else:
-        print(f"[Node {node_id}] Round {server_round} — resuming ({type(model).__name__})")
+        print(
+            f"[Node {node_id}] Round {server_round} — resuming ({type(model).__name__})"
+            )
 
     # Get the training data corresponding to each client
     partition_idx = int(msg.content["config"]["partition_idx"])
-    x, y = get_client_partition(x_all, y_all, partition_idx, partition_size, extra_fraction=0.5)
+    x, y = get_client_partition(x_all, y_all, partition_idx, partition_size)
 
     # Get total number of batches at disposal for each client
     total_batches = len(x) // batch_size
@@ -73,10 +79,10 @@ def train(msg: Message, context: Context):
     if isinstance(model, DecisionTree):
 
         # Incremental: use more data each FL round to train Decision trees
-        num_rounds = 30 # should match your pyproject.toml
+        num_FL_rounds = 10 
         total = len(x)
-        chunk_size = total // num_rounds
-        end = min(server_round * chunk_size, total)  # add one chunk per round
+        chunk_size = total // num_FL_rounds
+        end = min(server_round * chunk_size, total)
         model.fit(x[:end], y[:end])
         avg_loss = 0.0
     else:
@@ -97,10 +103,10 @@ def train(msg: Message, context: Context):
     print(f"[Node {node_id}] Round {server_round} — avg loss: {avg_loss:.4f}")
 
     # Store model parameter, so that we can continue training in next round
-    save_client_model(node_id, model, optimizer)
+    save_client_model(node_id, model, optimizer) 
 
-    # Create response messages
-    metrics = MetricRecord({"train_loss": avg_loss, "num-examples": len(x)})
+    # Create response messages 
+    metrics = MetricRecord({"train_loss": avg_loss, "num-examples": batches_per_round * batch_size})
     return Message(content=RecordDict({"metrics": metrics}), reply_to=msg)
 
 
@@ -128,17 +134,17 @@ def evaluate(msg: Message, context: Context):
 
     # Predict labels usign the corresponding model
     if isinstance(model, DecisionTree):
+        # Hard predictions, except only one class is seen
         predictions = model.predict_proba(x_batch).tolist()
     else:
         model.eval()
         with torch.no_grad():
             outputs = model(x_batch)
-            
             # Hard predictions
             predictions = torch.sigmoid(outputs).squeeze(1).round().tolist()
 
     # Print number of predictions returned 
-    print(f"[Node {node_id}] Eval done — {len(predictions)} predictions returned")
+    print(f"[Node {node_id}] Eval done — {len(predictions)} predictions returned") 
 
     # Create the reply message
     return Message(content=RecordDict({"metrics": MetricRecord({"predictions": predictions})}), reply_to=msg)

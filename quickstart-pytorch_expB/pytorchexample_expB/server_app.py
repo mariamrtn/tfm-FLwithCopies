@@ -6,9 +6,8 @@ import json
 import numpy as np
 from flwr.app import ArrayRecord, ConfigRecord, Context
 from flwr.serverapp import Grid, ServerApp
-from pytorchexample_changesXIII.task import BinaryClassifier, SmallNN
-from pytorchexample_changesXIII.custom_strategy import custom_strategy #importar la nueva estrategia
-
+from pytorchexample_expB.task import BinaryClassifier, SmallNN
+from pytorchexample_expB.custom_strategy import custom_strategy
 
 """ This file corresponds to the Server. 
 The main execution process starts here. """

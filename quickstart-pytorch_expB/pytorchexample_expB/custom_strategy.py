@@ -18,7 +18,7 @@ from flwr.app import (
 )
 from flwr.serverapp import Grid
 from flwr.serverapp.strategy import Strategy
-from pytorchexample_changesXIII.task import (
+from pytorchexample_expB.task import (
     XYDataset, 
     train_one_batch, 
     predict

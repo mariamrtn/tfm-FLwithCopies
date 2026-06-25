@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "quickstart-pytorch_changesXI"
+name = "quickstart-pytorch_expA"
 version = "1.0.1"
 description = "Federated Learning with PyTorch and Flower (Quickstart Example)"
 license = "Apache-2.0"
@@ -21,8 +21,8 @@ packages = ["."]
 publisher = "flwrlabs"
 
 [tool.flwr.app.components]
-serverapp = "pytorchexample_changesXI.server_app:app"
-clientapp = "pytorchexample_changesXI.client_app:app"
+serverapp = "pytorchexample_expA.server_app:app"
+clientapp = "pytorchexample_expA.client_app:app"
 
 [tool.flwr.app.config]
 num-server-rounds = 10
