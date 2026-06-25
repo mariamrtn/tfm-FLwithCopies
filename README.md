@@ -1,3 +1,10 @@
+# Federated Learning with Copies: Two Experiments
+We have implemented a new FL approach usign copies of machine learning classifiers. 
+The code has been created by modifiying the files from Flower's PyTorch tutorial: https://flower.ai/docs/framework/tutorial-quickstart-pytorch.html
+and creating new ones.
+
+
+# For the first time running the code follow step by step:
 1. Clone the repo:
 ```bash
 git clone https://github.com/mariamrtn/tfm-FLwithCopies
@@ -54,4 +61,4 @@ python evaluation_metrics.py
 
 7. Repetition of experiments
 Make sure to delete the files and folders generated in the previous run: client_models, global_model.pt, model_params.pth
-Datafiles can be kept to skip step 4. Then just run and analyse the results as explained before. 
+Datafiles can be kept to skip step 4. Then just run the experiments from the corresponding 'quickstart-pytorch_expA' or 'quickstart-pytorch_expB' folders and analyse the results as explained before. 
