@@ -19,5 +19,8 @@ client_models/
 .DS_Store
 Thumbs.db
 
+# Global Model
+global_model.pt
+
 # Metrics
 metrics_history.json
