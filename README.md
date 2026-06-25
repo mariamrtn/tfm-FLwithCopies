@@ -1,7 +1,7 @@
 # Federated Learning with Copies: Two Experiments
 This is an implementation of a new FL approach usign copies of machine learning classifiers and its application in two examples.
 The code has been created by modifiying the files from Flower's PyTorch tutorial: https://flower.ai/docs/framework/tutorial-quickstart-pytorch.html
-and creating new ones. In this way, we use the already existing information flow architecture given by Flower and customize it so that it perform FL with copies.
+and creating new ones. In this way, we use the already existing information flow architecture given by Flower and customize it so that it performs FL with copies.
 
 
 # For the first time running the code follow step by step:
