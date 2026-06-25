@@ -1,7 +1,7 @@
 # Federated Learning with Copies: Two Experiments
-We have implemented a new FL approach usign copies of machine learning classifiers. 
+This is an implementation of a new FL approach usign copies of machine learning classifiers and two examples.
 The code has been created by modifiying the files from Flower's PyTorch tutorial: https://flower.ai/docs/framework/tutorial-quickstart-pytorch.html
-and creating new ones.
+and creating new ones. In this way, we use the already existing information flow architecture given by Flower and customize it so that it perform FL with copies.
 
 
 # For the first time running the code follow step by step:
@@ -58,7 +58,5 @@ cd pytorchexample_expB
 python plot_metrics_evol.py
 python evaluation_metrics.py
 ```
-
-7. Repetition of experiments
-Make sure to delete the files and folders generated in the previous run: client_models, global_model.pt, model_params.pth
-Datafiles can be kept to skip step 4. Then just run the experiments from the corresponding 'quickstart-pytorch_expA' or 'quickstart-pytorch_expB' folders and analyse the results as explained before. 
+# Repetition of experiments
+Make sure to delete the files and folders generated in the previous run: client_models, global_model.pt, model_params.pth. Datafiles, however, can be kept to skip step 4. Then just run the experiments from the corresponding 'quickstart-pytorch_expA' or 'quickstart-pytorch_expB' folders and analyse the results as explained before. 
