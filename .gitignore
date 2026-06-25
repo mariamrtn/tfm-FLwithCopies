@@ -9,6 +9,8 @@ client_models/
 # Flower
 .flwr/
 
+# Data (optional — remove if you want to track CSVs)
+*.csv
 
 # Conda
 *.egg-info/
