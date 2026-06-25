@@ -1,4 +1,4 @@
-name: flower-env
+name: flwr-env
 channels:
   - defaults
   - conda-forge
