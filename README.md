@@ -13,7 +13,7 @@ cd tfm-FLwithCopies
 
 2. Recreate the environment:
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yaml
 conda activate flwr-env
 ```
 
@@ -31,9 +31,9 @@ cd quickstart-pytorch_expB
 cd pytorchexample_expA
 python get_original_data.py
 python get_synthetic_data.py
-
+```
 # or
-
+```bash
 cd pytorchexample_expB
 python get_original_data.py
 python get_synthetic_data.py
@@ -51,9 +51,9 @@ cd pytorchexample_expA
 python plot_metrics_evol.py
 python plot_models_db.py
 python evaluation_metrics.py
-
+```
 # or
-
+```bash
 cd pytorchexample_expB
 python plot_metrics_evol.py
 python evaluation_metrics.py
