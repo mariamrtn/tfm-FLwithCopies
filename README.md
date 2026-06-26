@@ -20,9 +20,10 @@ conda activate flwr-env
 3. Choose an experiment:
 ```bash
 cd quickstart-pytorch_expA
+```
+or
 
-# or
-
+```bash
 cd quickstart-pytorch_expB
 ```
 
@@ -32,7 +33,8 @@ cd pytorchexample_expA
 python get_original_data.py
 python get_synthetic_data.py
 ```
-# or
+or
+
 ```bash
 cd pytorchexample_expB
 python get_original_data.py
@@ -52,7 +54,8 @@ python plot_metrics_evol.py
 python plot_models_db.py
 python evaluation_metrics.py
 ```
-# or
+or
+
 ```bash
 cd pytorchexample_expB
 python plot_metrics_evol.py
