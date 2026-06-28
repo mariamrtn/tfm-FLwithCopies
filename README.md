@@ -8,7 +8,7 @@ More precisely, in each of the experiments, the files:
 * `server_app.py` and `pyproject.toml` have been **modified to a smaller extent** and most of the code of the original tutorial is reused.
 * `custom_strategy.py`, `evaluation_metrics.py`, `get_original_data.py`, `get_synthetic_data.py`, `plot_metrics_evol.py` and `plot_models_db.py` did not exist in the original tutorial and have been **fully created** for this project.
 
-# For the first time running the code, follow step by step:
+# Runing the project. Follow step by step:
 1. Clone the repo:
 ```bash
 git clone https://github.com/mariamrtn/tfm-FLwithCopies
@@ -65,7 +65,23 @@ cd pytorchexample_expB
 python plot_metrics_evol.py
 python evaluation_metrics.py
 ```
-# Repetition of experiments
+## Repetition of experiments
 Make sure to delete the files and folders generated in the previous run: client_models, global_model.pt, model_params.pth. Datafiles, however, can be kept to skip step 4. Then just run the experiments from the corresponding 'quickstart-pytorch_expA' or 'quickstart-pytorch_expB' folders and analyse the results as explained before. 
 
-## File Overview
+# Project Structure 
+The repository contains two experiments:
+
+- `quickstart-pytorch_expA/`: Implementation of Experiment A.
+- `quickstart-pytorch_expB/`: Implementation of Experiment B (same structure as Experiment A with the corresponding implementation changes).
+
+Each experiment contains:
+- `client_app.py` – Defines the ClientApp. It is where clients' local training happens and where predictions for the synthetic data used to train the global model (copy) are obtaiend.
+- `server_app.py` – Defines the ServerApp. Here the global model is initialized and stored and it is where the FL rounds are started according to our new custom strategy.
+- `custom_strategy.py` – Defines the custom federated learning strategy.
+- `task.py` – Contains functions used in other files.
+- `evaluation_metrics.py` – Computes two histograms to evaluate the global model after it has been trained: fidelity histogram and copy error histogram.
+- `get_original_data.py` – Generates the original datasets used for local training of clients and evaluation of the global model's accuracy.
+- `get_synthetic_data.py` – Generates the synthetic datasets used for training the global model and fidelity evaluation.
+- `plot_metrics_evol.py` – Plots the evolution of training loss and fidelity across the FL rounds.
+- `plot_models_db.py` – Visualizes the decision boundaries of the clients and the clobal model in Experiment A
+
