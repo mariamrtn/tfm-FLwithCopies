@@ -83,8 +83,8 @@ Each experiment contains:
 - `get_original_data.py` – Generates the original datasets used for local training of clients and evaluation of the global model's accuracy.
 - `get_synthetic_data.py` – Generates the synthetic datasets used for training the global model and fidelity evaluation.
 - `plot_metrics_evol.py` – Plots the evolution of training loss and fidelity across the FL rounds.
-- `plot_models_db.py` – Visualizes the decision boundaries of the clients and the global model in Experiment A
-- `pyproject.toml` - Defines the project configuration, dependencies, and application entry points
+- `plot_models_db.py` – Visualizes the decision boundaries of the clients and the global model in Experiment A.
+- `pyproject.toml` - Defines the project configuration, dependencies, and application entry points.
 
 Also, the repository contains:
 - `.gitignore` – Specifies files and directories ignored by Git.
