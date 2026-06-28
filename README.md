@@ -84,4 +84,9 @@ Each experiment contains:
 - `get_synthetic_data.py` – Generates the synthetic datasets used for training the global model and fidelity evaluation.
 - `plot_metrics_evol.py` – Plots the evolution of training loss and fidelity across the FL rounds.
 - `plot_models_db.py` – Visualizes the decision boundaries of the clients and the global model in Experiment A
+- `pyproject.toml` - Defines the project configuration, dependencies, and application entry points
 
+Also, the repository contains:
+- `.gitignore` – Specifies files and directories ignored by Git.
+- `environment.yaml` – Lists the Conda environment and required dependencies.
+- `README.md` – Provides an overview of the project, instructions to set it up, and general information.
