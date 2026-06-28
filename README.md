@@ -77,7 +77,7 @@ The repository contains two experiments:
 Each experiment contains:
 - `client_app.py` – Defines the ClientApp. It is where clients' local training happens and where predictions for the synthetic data used to train the global model (copy) are obtaiend.
 - `server_app.py` – Defines the ServerApp. Here the global model is initialized and stored and it is where the FL rounds are started according to our new custom strategy.
-- `custom_strategy.py` – Defines the custom federated learning strategy.
+- `custom_strategy.py` – Defines the custom federated learning strategy with copies that we have created.
 - `task.py` – Contains functions used in other files.
 - `evaluation_metrics.py` – Computes two histograms to evaluate the global model after it has been trained: fidelity histogram and copy error histogram.
 - `get_original_data.py` – Generates the original datasets used for local training of clients and evaluation of the global model's accuracy.
