@@ -3,6 +3,10 @@ This is an implementation of a new FL approach using copies of machine learning 
 The code has been created by modifiying the files from Flower's PyTorch tutorial: https://flower.ai/docs/framework/tutorial-quickstart-pytorch.html
 and creating new ones. In this way, we use the already existing information flow architecture given by Flower and customize it so that it performs FL with copies.
 
+More precisely, in each of the experiments, the files:
+* `client_app.py` and `task.py` have been **completely modified** compared to the ones in the original tutorial, and now consist of code fully developed for this particular experiments.
+* `server_app.py` and `pyproject.toml` have been **modified to a smaller extent** and most part of the code of the original tutorial is reused.
+* `custom_strategy.py`, `evaluation_metrics.py`, `get_original_data.py`, `get_synthetic_data.py`, `plot_metrics_evol.py` and `plot_models_db.py` did not exist in the original tutorial and have been **fully created** for this project.
 
 # For the first time running the code follow step by step:
 1. Clone the repo:
